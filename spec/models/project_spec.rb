@@ -8,6 +8,13 @@ RSpec.describe Project do
 
   end
 
+  it 'detects that a project with a new task is not done' do
+    project = Project.new
+    task = Task.new
+    project.tasks << task
+    expect(project.done?).to be_falsy
 
+
+  end
 
 end
