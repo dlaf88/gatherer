@@ -6,7 +6,7 @@ class Project
   end
 
   def done?
-    !tasks.present?
+    tasks.empty?
   end
 
 end
