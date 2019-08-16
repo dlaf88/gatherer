@@ -17,4 +17,5 @@ class Task
  def counts_toward_velocity?
    return false unless completed?
    completed_at > Project.velocity_days_in_days.days.ago
+ end
 end
