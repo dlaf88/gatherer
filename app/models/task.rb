@@ -1,19 +1,13 @@
 class Task
- attr_accessor :size,:completed_date
+  belongs_to :project
 
-  def initialize(options = {})
-    @completed_date = options[:completed_date] if options[:completed_date]
-    @size = options[:size]
-  end
 
   def mark_completed(date: Time.current)
-    @completed_date = date
-    @completed = true
+    completed_at = date
   end
 
   def completed?
-    return true if completed_date
-    false
+    completed_at.present?
   end
 
  def points_toward_velocity
@@ -21,10 +15,6 @@ class Task
  end
 
  def counts_toward_velocity?
-   if(completed? && (completed_date >= 21.days.ago))
-     return true
-  end
-    return false
- end
-
+   return false unless completed?
+   completed_at > Project.velocity_days_in_days.days.ago
 end
