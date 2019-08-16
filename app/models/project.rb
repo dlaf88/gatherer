@@ -1,12 +1,16 @@
-class Project
-  attr_accessor :tasks, :due_date
+class Project < ApplicationRecord
+  has_many :task,dependent: :destroy
 
-  def initialize
-    @tasks = []
+  def self.velocity_days_in_days
+    21
+  end
+
+  def incomplete_tasks
+    tasks.reject(&:completed?)
   end
 
   def done?
-    tasks.all?(&:completed?)
+    incomplete_tasks.empty?
   end
 
   def total_size
@@ -14,7 +18,7 @@ class Project
   end
 
   def remaining_size
-    tasks.reject(&:completed?).sum(&:size)
+    incomplete_tasks.sum(&:size)
   end
 
   def completed_task_size
@@ -22,15 +26,16 @@ class Project
   end
 
   def completed_tasks_per_day
-    completed_task_size / 21.0
-  end
-
-  def on_schedule?
-    Time.zone.today + projected_days_remaining <= due_date
+    completed_task_size *1.0 / Project.velocity_days_in_days
   end
 
   def projected_days_remaining
     remaining_size/completed_tasks_per_day
+  end
+
+  def on_schedule?
+    return false if projected_days_remaining.nan?
+    (Time.zone.today + projected_days_remaining) <= due_date
   end
 
 end
