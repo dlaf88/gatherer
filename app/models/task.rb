@@ -1,9 +1,14 @@
-class Task
+class Task < ApplicationRecord
   belongs_to :project
+
+  def after_initialize()
+    completed_at = attributes[:completed_date] if attributes[:completed_date].present?
+    size = attributes[:size] if attributes[:size].present?
+  end
 
 
   def mark_completed(date: Time.current)
-    completed_at = date
+    self.completed_at = date
   end
 
   def completed?

@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  has_many :task,dependent: :destroy
+  has_many :tasks,dependent: :destroy
 
   def self.velocity_days_in_days
     21
@@ -26,7 +26,7 @@ class Project < ApplicationRecord
   end
 
   def completed_tasks_per_day
-    completed_task_size *1.0 / Project.velocity_days_in_days
+    completed_task_size * 1.0 / Project.velocity_days_in_days
   end
 
   def projected_days_remaining

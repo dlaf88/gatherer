@@ -18,11 +18,11 @@ RSpec.describe Project do
 
   describe "estimates" do
       let(:project){Project.new}
-      let(:done){Task.new({size:2,completed_date: 1.day.ago})}
-      let(:small_done){Task.new({size: 1,completed_date: 1.month.ago})}
+      let(:done){Task.new( {size:2,completed_at: 1.day.ago})}
+      let(:small_done){Task.new({size: 1,completed_at: 1.month.ago})}
       let(:small_not_done){Task.new({size: 1})}
       let(:large_not_done){Task.new({size: 4})}
-      let(:large_done){Task.new({size: 4,completed_date: 1.day.ago})}
+      let(:large_done){Task.new({size: 4,completed_at: 1.day.ago})}
         before(:example) do
           project.tasks = [done,small_not_done,large_not_done,small_done,large_done]
         end

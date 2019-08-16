@@ -10,7 +10,7 @@ RSpec.describe Task do
 
 
   it 'indicates that a task that is marked completed is complete' do
-    task.mark_completed
+    task.mark_completed(date: 1.day.ago)
     expect(task).to be_completed
   end
 
