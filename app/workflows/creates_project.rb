@@ -1,12 +1,12 @@
 class CreatesProject
-  attr_accessor :name,:project
+  attr_accessor :name,:project,:tasks
 
-  def initialize(name="")
+  def initialize(name="",tasks=[])
     @name = name
   end
 
   def build
-    self.project = Project.new(name: name)
+    self.project = Project.new(name=self.name)
   end
 
 end

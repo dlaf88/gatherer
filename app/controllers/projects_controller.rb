@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @workflow = CreatesProject.new(name:"")
+    @workflow = CreatesProject.new(name:params[:project][:name])
   end
 
   def index
