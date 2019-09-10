@@ -22,6 +22,7 @@ class CreatesProject
   def size_as_integer(size)
     return 1 if size.blank?
     [size.to_i,1].max
+    #note that when a string is tried to be converted to integer the result is 0 if conversion not possible
   end
 
 end
