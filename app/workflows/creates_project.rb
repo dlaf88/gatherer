@@ -12,6 +12,11 @@ class CreatesProject
     project
   end
 
+
+  def create
+    build.save
+  end
+
   def convert_string_to_tasks
     task_string.split("\n").map do |one_task|
       title,size = one_task.split(":")
