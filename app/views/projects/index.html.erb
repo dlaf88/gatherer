@@ -2,7 +2,13 @@
 
 <% @projects.each do |project| %>
   <div class="">
-      <%= project.name %>
-      <%= project.total_size %>
+      <div id= <%="project_" + project.id.to_s + "_name" %>>
+          <%= project.name %>
+      </div>
+      <div id= <%="project_" + project.id.to_s + "_size" %>>
+          <%= project.total_size%>
+      </div>
+
+
   </div>
 <% end %>
