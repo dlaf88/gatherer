@@ -4,7 +4,9 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @workflow = CreatesProject.new(name:params[:project][:name])
+    @workflow = CreatesProject.new(name:params[:project][:name],task_string: params[:project][:tasks])
+    @workflow.create
+    redirect_to projects_path
   end
 
   def index
