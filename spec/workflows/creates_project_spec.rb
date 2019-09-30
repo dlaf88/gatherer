@@ -54,4 +54,14 @@ RSpec.describe CreatesProject do
 
 
   end
+
+
+  describe 'failures states' do
+    it 'fails when there is no name' do
+        creator = CreatesProject.new(name: "",task_string: "First Task:2\nSecond task:3")
+        creator.create
+        expect(creator).to_not be_a_success
+
+    end
+  end
 end
